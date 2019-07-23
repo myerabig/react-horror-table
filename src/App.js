@@ -1,53 +1,122 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import './App.css';
 import Header from './Header';
 import SearchBar from './SearchBar';
 import MovieChart from './MovieChart';
+import AddMovie from './AddMovie';
 
-const originalMoviesArray = [{
-  title: "Halloween",
-  titleLink: "https://www.youtube.com/watch?v=xHuOtLTQ_1I",
-  titleImage: require("./assets/halloween1978.jpg"),
-  year: 1978,
-  director: "John Carpenter",
-  imdbLink: "https://www.imdb.com/title/tt0077651/",
-  imdbScore: 7.8,
-  subgenre: "Slasher",
-  actors: ["Jamie Lee Curtis", "Nick Castle"],
-  summary: "On a cold Halloween night in 1963, six year old Michael Myers brutally murdered his 17-year-old sister, Judith.He was sentenced and locked away for 15 years.But on October 30, 1978, while being transferred for a court date, a 21-year-old Michael Myers steals a car and escapes Smith's Grove. He returns to his quiet hometown of Haddonfield, Illinois, where he looks for his next victims.",
-  runtime: 91
-},
-{
-  title: "Halloween",
-  titleLink: "https://www.youtube.com/watch?v=ek1ePFp-nBI",
-  titleImage: require("./assets/halloween2018.jpg"),
-  year: 2018,
-  director: "David Gordon Green",
-  imdbLink: "https://www.imdb.com/title/tt1502407/",
-  imdbScore: 6.7,
-  subgenre: "Slasher",
-  actors: ["Jamie Lee Curtis", "Nick Castle"],
-  summary: "It's been 40 years since Laurie Strode survived a vicious attack from crazed killer Michael Myers on Halloween night. Locked up in an institution Myers manages to escape when his bus transfer goes horribly wrong. Laurie now faces a terrifying showdown when the masked madman returns to Haddonfield, Ill. -- but this time, she's ready for him.",
-  runtime: 104
-}];
+async function getMovies() {
+  const response = await fetch("https://movies-4461.restdb.io/rest/movies", {
+    cache: 'no-cache',
+    headers:
+    {
+      'x-apikey': '5d25df9d1e3c8507f2caa276'
+    }
+  });
+  const json = await response.json();
+  return json;
+}
 
-const useAppState = () => {
-  const [movies, setMovies] = useState(originalMoviesArray);
+function postMovie() {
+  const request = require("request");
 
-  return { movies, setMovies };
+  let options = {
+    method: 'POST',
+    url: 'https://movies-4461.restdb.io/rest/movies',
+    headers:
+    {
+      'cache-control': 'no-cache',
+      'x-apikey': '79e9ea634e18ec60517fd90c569e2c37305f6',
+      'content-type': 'application/json'
+    },
+    body: {
+      title: getData('addTitle'),
+      titleLink: getData('addTitleLink'),
+      titleImage: getData('addTitleImage'),
+      year: getData('addYear'),
+      director: getData('addDirector'),
+      imdbLink: getData('addImdbLink'),
+      imdbScore: getData('addImdbScore'),
+      subgenre: getData('addSubgenre'),
+      actors: getActors(),
+      summary: getData('addSummary'),
+      runtime: getData('addRuntime')
+    },
+    json: true
+  };
+
+  request(options, function (error, response, body) {
+    if (error) throw new Error(error);
+  });
+}
+
+function getData(id) {
+  return document.getElementById(id).value;
+}
+
+function getActors() {
+  let actorString = document.getElementById('addActors').value;
+  return actorString.split(",");
 }
 
 function App() {
-  const {
-    movies,
-    setMovies
-  } = useAppState();
+  const [loading, setLoading] = useState('initial');
+  const [movies, setMovies] = useState([]);
+  const [adding, setAdding] = useState(false);
+  const [movieAdded, setMovieAdded] = useState(true);
+  const [originalMoviesArray, setOriginalMoviesArray] = useState([]);
+  const [initialized, setInitialized] = useState(false);
+
+  useEffect(() => {
+    if (movieAdded == true) {
+      setMovieAdded(false);
+      setLoading('true');
+      setTimeout(() => {
+        getMovies()
+          .then((data) => {
+            setLoading('false');
+            setMovies(data);
+            if (!initialized) {
+              setOriginalMoviesArray(data);
+              setInitialized(true);
+            }
+          });
+      }, 1000);
+    }
+  });
+
+  if (loading === 'initial') {
+    return <h2>Intializing...</h2>;
+  }
+
+  if (loading === 'true') {
+    return <h2>Loading...</h2>;
+  }
+
+  if (adding === true) {
+    return (
+      <div className="App">
+        <AddMovie />
+        <div align="center">
+          <button id="addMovieButton" onClick={() => {
+            postMovie();
+            setAdding(false);
+            setMovieAdded(true);
+          }}>Add Movie</button>
+        </div>
+      </div>
+    );
+  }
 
   return (
     <div className="App">
-      <Header />
-      <SearchBar setMovies={setMovies} movies={movies} originalMoviesArray={originalMoviesArray} />
+      <Header message="YOUR GUIDE TO THE OBJECTIVELY BEST HORROR MOVIES" />
+      <SearchBar setMovies={setMovies} originalMoviesArray={originalMoviesArray} />
       <MovieChart movies={movies} />
+      <br />
+      <div align="center">
+        <button id="addMovieButton" onClick={() => setAdding(true)}>Add Movie</button>
+      </div>
     </div>
   );
 }
