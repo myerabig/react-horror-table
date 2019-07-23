@@ -1,8 +1,11 @@
 import React from 'react';
 
+let searchType = "title";
+let placeholderText = "Search by " + searchType;
+
 function SearchBar(props) {
-  let searchType = "title";
-  let placeholderText = "Search by " + searchType;
+  let movies = [];
+  let search = "";
 
   function handleSearchClick(id) {
     searchType = id;
@@ -20,44 +23,48 @@ function SearchBar(props) {
   }
 
   function searchMovies() {
-    if (searchType == "title") {
-      console.log("searched titles");
-    }
-    else if (searchType == "year") {
-      console.log("searched years");
-    }
-    else if (searchType == "director") {
-      console.log("searched directors");
-    }
-    else if (searchType == "actor") {
-      console.log("searched actors");
-    }
-  }
+    movies = [];
+    search = document.getElementById("searchBar").value.toLowerCase();
+    props.setMovies({});
 
-  function titleSearch() {
-    var movies = "";
-    var search = document.getElementById("titleSearchbar").value;
-    var titleName = "";
-    var searchHeader = "<tr><th width=\"14%\">Title</th><th width=\"3%\">Release Year</th><th width=\"10%\">Director</th><th width=\"2%\">IMDB Rating/10</th><th width=\"10%\">Subgenre</th><th width=\"15%\">Lead Actor(s)</th><th width=\"45%\">Plot Summary</th><th width=\"2%\">Runtime (minutes)</th></tr>";
-
-    document.getElementById("movieChart").style = "display: none";
-    document.getElementById("searchTable").style = "display: block";
-    document.getElementById("searchTable").innerHTML = searchHeader;
-
-    for (let i = 0; i < document.getElementsByClassName("row").length; i++) {
-      titleName = document.getElementsByClassName("row")[i].getElementsByClassName("title")[0].getElementsByTagName("a")[0].innerHTML;
-
-      if (titleName.indexOf(search) != -1) {
-        movies += document.getElementsByClassName("row")[i].outerHTML;
+    if (search === "") {
+      props.setMovies(props.originalMoviesArray);
+    }
+    else if (searchType === "title") {
+      for (let movie of props.originalMoviesArray) {
+        if (movie.title.toLowerCase().indexOf(search) !== -1) {
+          movies.push(movie);
+        }
       }
+      props.setMovies(movies);
     }
-
-    if (document.getElementById("titleSearchbar").value == "") {
-      document.getElementById("movieChart").style = "display: block";
-      document.getElementById("searchTable").style = "display: none";
+    else if (searchType === "year") {
+      for (let movie of props.originalMoviesArray) {
+        if (movie.year.indexOf(search) !== -1) {
+          movies.push(movie);
+        }
+      }
+      props.setMovies(movies);
     }
-
-    document.getElementById("searchTable").innerHTML = searchHeader + movies;
+    else if (searchType === "director") {
+      for (let movie of props.originalMoviesArray) {
+        if (movie.director.toLowerCase().indexOf(search) !== -1) {
+          movies.push(movie);
+        }
+      }
+      props.setMovies(movies);
+    }
+    else if (searchType === "actor") {
+      for (let movie of props.originalMoviesArray) {
+        for (let actor of movie.actors) {
+          if (actor.toLowerCase().indexOf(search) !== -1) {
+            movies.push(movie);
+            break;
+          }
+        }
+      }
+      props.setMovies(movies);
+    }
   }
 
   return (

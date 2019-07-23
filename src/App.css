@@ -49,8 +49,24 @@ th{
 
 .searchOption:hover {
   background-color: white;
+  cursor: pointer;
 }
 
 .clickedSearchOption{
   background-color: white;
+}
+
+#addMovieButton {
+  background-color: rgb(216, 145, 12);
+  color: white;
+  border-radius: 8px;
+  padding: 10px 20px;
+  font-size: 14px;
+  transition-duration: 0.4s;
+}
+
+#addMovieButton:hover {
+  background-color: white;
+  color: orange;
+  cursor: pointer;
 }
