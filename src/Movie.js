@@ -13,6 +13,16 @@ function Movie(props) {
       <td class="actors">{props.movie.actors.map(actor => <div>{actor}</div>)}</td>
       <td>{props.movie.summary}</td>
       <td align="center">{props.movie.runtime}</td>
+      <td>
+        <img class="icon" src={require("./assets/edit.png")} width="30" onClick={() => {
+          props.setEditing(true);
+          props.setEditingId(props.movie._id);
+        }} />
+        <img class="icon" src={require("./assets/delete.png")} width="30" onClick={() => {
+          props.setDeleting(true);
+          props.setEditingId(props.movie._id);
+        }} />
+      </td>
     </tr>
   );
 }

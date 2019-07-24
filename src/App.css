@@ -56,7 +56,7 @@ th{
   background-color: white;
 }
 
-#addMovieButton {
+#orangeButton {
   background-color: rgb(216, 145, 12);
   color: white;
   border-radius: 8px;
@@ -65,8 +65,12 @@ th{
   transition-duration: 0.4s;
 }
 
-#addMovieButton:hover {
+#orangeButton:hover {
   background-color: white;
   color: orange;
+  cursor: pointer;
+}
+
+.icon:hover {
   cursor: pointer;
 }

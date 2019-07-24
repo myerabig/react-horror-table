@@ -1,37 +1,21 @@
 import React from 'react';
-import Header from './Header';
+import FormInput from './FormInput';
 
 function AddMovie() {
-  function formInput(name, id) {
-    return (
-      <tr align="center">
-        <td align="right" width="48%">
-          {name}:
-        </td>
-        <td width="4%"></td>
-        <td align="left" width="48%">
-          <input id={id} type="text" />
-        </td>
-      </tr>
-    )
-  }
-
   return (
     <div className="AddMovie">
-      <Header message="ADD A MOVIE" />
-      <button class="searchOption">Back</button>
       <table cols="3" width="45%" align="center" cellspacing="20">
-        {formInput("Title", "addTitle")}
-        {formInput("Link to movie trailer", "addTitleLink")}
-        {formInput("Link to movie poster", "addTitleImage")}
-        {formInput("Release Year", "addYear")}
-        {formInput("Director", "addDirector")}
-        {formInput("Link to IMDB page", "addImdbLink")}
-        {formInput("IMDB Score", "addImdbScore")}
-        {formInput("Subgenre", "addSubgenre")}
-        {formInput("Lead Actors (separate by commas, no spaces)", "addActors")}
-        {formInput("Summary", "addSummary")}
-        {formInput("Runtime", "addRuntime")}
+        <FormInput name="Title" id="editTitle" type="text" size="40" />
+        <FormInput name="Link to movie trailer" id="editTitleLink" type="text" size="50" />
+        <FormInput name="Link to movie poster" id="editTitleImage" type="text" size="50" />
+        <FormInput name="Release Year" id="editYear" type="number" size="2" />
+        <FormInput name="Director" id="editDirector" type="text" size="35" />
+        <FormInput name="Link to IMDB page" id="editImdbLink" type="text" size="50" />
+        <FormInput name="IMDB Score" id="editImdbScore" type="number" size="2" step="0.1" />
+        <FormInput name="Subgenre" id="editSubgenre" type="text" size="20" />
+        <FormInput name="Lead Actors (separate by commas, no spaces)" id="editActors" type="text" size="50" />
+        <FormInput name="Summary" id="editSummary" type="text" size="60" />
+        <FormInput name="Runtime" id="editRuntime" type="number" size="2" />
       </table>
       <br />
     </div>
