@@ -1,0 +1,26 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`SortArrows should render as expected 1`] = `
+<div
+  class="SortArrows"
+>
+  <div
+    align="right"
+  >
+    <img
+      alt="Up"
+      class="icon"
+      id="upArrow"
+      src="uparrow.png"
+      width="20"
+    />
+    <img
+      alt="Down"
+      class="icon"
+      id="downArrow"
+      src="downarrow.png"
+      width="20"
+    />
+  </div>
+</div>
+`;

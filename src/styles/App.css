@@ -1,16 +1,16 @@
 @font-face{
   font-family: "KreepTown";
-  src: url("./assets/KreepTown.otf");
+  src: url("../assets/KreepTown.otf");
 }
 
 @font-face{
   font-family: "Nightmare Pills";
-  src: url("./assets/nightmarepills.ttf");
+  src: url("../assets/nightmarepills.ttf");
 }
 
 @font-face{
   font-family: "Spooky Light";
-  src: url("./assets/SpookyLight.ttf");
+  src: url("../assets/SpookyLight.ttf");
 }
 
 *{
@@ -33,13 +33,14 @@ th{
 
 .title:hover img{
   display: block;
+  position: absolute;
 }
 
 #searchBar{
   font-size: 14px;
 }
 
-.searchOption{
+.darkButton{
   background-color: rgb(100, 99, 99);
   border-radius: 8px;
   padding: 10px 20px;
@@ -47,7 +48,7 @@ th{
   transition-duration: 0.4s;
 }
 
-.searchOption:hover {
+.darkButton:hover {
   background-color: white;
   cursor: pointer;
 }
@@ -73,4 +74,20 @@ th{
 
 .icon:hover {
   cursor: pointer;
+}
+
+.FormInput {
+  font-family: 'Times New Roman';
+  font-size: 15px;
+  color: black;
+}
+
+#logInButton {
+  position: absolute;
+  top: 5%;
+  right: 5%;
+}
+
+.searchResult {
+  color: white;
 }

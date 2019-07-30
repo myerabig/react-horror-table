@@ -9,9 +9,9 @@ function FormInput(props) {
       <td width="4%"></td>
       <td align="left" width="48%">
         {props.type !== 'number' ? (
-          <input id={props.id} type={props.type} defaultValue={props.value || ""} size={props.size} required />
+          <input id={props.id} className="FormInput" type={props.type} defaultValue={props.value || ""} size={props.size} required />
         ) : (
-            <input id={props.id} type={props.type} defaultValue={props.value || ""} size={props.size} step={props.step || "1"} required />
+            <input id={props.id} className="FormInput" type={props.type} defaultValue={props.value || ""} size={props.size} step={props.step || "1"} required />
           )
         }
       </td>
