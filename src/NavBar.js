@@ -1,5 +1,5 @@
-import React from "react";
-import { useAuth0 } from "./react-auth0-wrapper";
+import React from 'react';
+import { useAuth0 } from './react-auth0-wrapper';
 
 const NavBar = () => {
   const { isAuthenticated, loginWithRedirect, logout } = useAuth0();
@@ -7,16 +7,22 @@ const NavBar = () => {
   return (
     <div>
       {!isAuthenticated && (
-        <button id="logInButton" className="darkButton"
-          onClick={() =>
-            loginWithRedirect({})
-          }
-        >
+        <button
+          id='logInButton'
+          className='darkButton'
+          onClick={() => loginWithRedirect({})}>
           Log in
         </button>
       )}
 
-      {isAuthenticated && <button id="logInButton" className="darkButton" onClick={() => logout()}>Log out</button>}
+      {isAuthenticated && (
+        <button
+          id='logInButton'
+          className='darkButton'
+          onClick={() => logout()}>
+          Log out
+        </button>
+      )}
     </div>
   );
 };

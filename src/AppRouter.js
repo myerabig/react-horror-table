@@ -1,16 +1,18 @@
-import React from "react";
-import { BrowserRouter, Route, Switch } from "react-router-dom";
-import App from "./App/App";
-import Profile from "./Profile";
+import React from 'react';
+import { BrowserRouter, Route, Switch } from 'react-router-dom';
 import PrivateRoute from './PrivateRoute';
+import App from './App/App';
+import Profile from './Profile';
+import NotFound from './NotFound';
 
 function AppRouter() {
   return (
-    <div className="AppRouter">
+    <div className='AppRouter'>
       <BrowserRouter>
         <Switch>
-          <Route path="/" exact component={App} />
-          <PrivateRoute path="/profile" component={Profile} />
+          <Route exact path='/' component={App} />
+          <PrivateRoute path='/profile' component={Profile} />
+          <Route component={NotFound} />
         </Switch>
       </BrowserRouter>
     </div>

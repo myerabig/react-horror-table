@@ -1,46 +1,46 @@
-@font-face{
-  font-family: "KreepTown";
-  src: url("../assets/KreepTown.otf");
+@font-face {
+  font-family: 'KreepTown';
+  src: url('../assets/KreepTown.otf');
 }
 
-@font-face{
-  font-family: "Nightmare Pills";
-  src: url("../assets/nightmarepills.ttf");
+@font-face {
+  font-family: 'Nightmare Pills';
+  src: url('../assets/nightmarepills.ttf');
 }
 
-@font-face{
-  font-family: "Spooky Light";
-  src: url("../assets/SpookyLight.ttf");
+@font-face {
+  font-family: 'Spooky Light';
+  src: url('../assets/SpookyLight.ttf');
 }
 
-*{
+* {
   color: orange;
-  font-family: "KreepTown";
+  font-family: 'KreepTown';
 }
 
-h1{
+h1 {
   text-align: center;
-  font-family: "Nightmare Pills";
+  font-family: 'Nightmare Pills';
 }
 
-th{
-  font-family: "Spooky Light";
+th {
+  font-family: 'Spooky Light';
 }
 
-.title img{
+.title img {
   display: none;
 }
 
-.title:hover img{
+.title:hover img {
   display: block;
   position: absolute;
 }
 
-#searchBar{
+#searchBar {
   font-size: 14px;
 }
 
-.darkButton{
+.darkButton {
   background-color: rgb(100, 99, 99);
   border-radius: 8px;
   padding: 10px 20px;
@@ -53,7 +53,7 @@ th{
   cursor: pointer;
 }
 
-.clickedSearchOption{
+.clickedSearchOption {
   background-color: white;
 }
 

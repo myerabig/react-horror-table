@@ -4,14 +4,13 @@ function getData(id) {
 
 function getActors(id) {
   let actorString = document.getElementById(id).value;
-  return actorString.split(",");
+  return actorString.split(',');
 }
 
 async function getMovies() {
-  const response = await fetch("https://movies-4461.restdb.io/rest/movies", {
+  const response = await fetch('https://movies-4461.restdb.io/rest/movies', {
     cache: 'no-cache',
-    headers:
-    {
+    headers: {
       'x-apikey': '5d25df9d1e3c8507f2caa276'
     }
   });
@@ -20,13 +19,12 @@ async function getMovies() {
 }
 
 function postMovie() {
-  const request = require("request");
+  const request = require('request');
 
   let options = {
     method: 'POST',
     url: 'https://movies-4461.restdb.io/rest/movies',
-    headers:
-    {
+    headers: {
       'cache-control': 'no-cache',
       'x-apikey': '79e9ea634e18ec60517fd90c569e2c37305f6',
       'content-type': 'application/json'
@@ -47,19 +45,18 @@ function postMovie() {
     json: true
   };
 
-  request(options, function (error, response, body) {
+  request(options, function(error, response, body) {
     if (error) throw new Error(error);
   });
 }
 
 function putMovie(objectId) {
-  var request = require("request");
+  var request = require('request');
 
   var options = {
     method: 'PUT',
     url: `https://movies-4461.restdb.io/rest/movies/${objectId}`,
-    headers:
-    {
+    headers: {
       'cache-control': 'no-cache',
       'x-apikey': '79e9ea634e18ec60517fd90c569e2c37305f6',
       'content-type': 'application/json'
@@ -80,26 +77,25 @@ function putMovie(objectId) {
     json: true
   };
 
-  request(options, function (error, response, body) {
+  request(options, function(error, response, body) {
     if (error) throw new Error(error);
   });
 }
 
 function deleteMovie(objectId) {
-  var request = require("request");
+  var request = require('request');
 
   var options = {
     method: 'DELETE',
     url: `https://movies-4461.restdb.io/rest/movies/${objectId}`,
-    headers:
-    {
+    headers: {
       'cache-control': 'no-cache',
       'x-apikey': '79e9ea634e18ec60517fd90c569e2c37305f6',
       'content-type': 'application/json'
     }
   };
 
-  request(options, function (error, response, body) {
+  request(options, function(error, response, body) {
     if (error) throw new Error(error);
   });
 }
