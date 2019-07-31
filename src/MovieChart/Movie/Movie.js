@@ -1,6 +1,7 @@
 import React from 'react';
 import '../../styles/App.css';
 import HighlightedResults from '../HighlightedResults/HighlightedResults';
+var _ = require('lodash');
 
 function Movie(props) {
   return (
@@ -72,7 +73,7 @@ function Movie(props) {
           />
         ) : (
           props.movie.actors.map(actor => (
-            <div key={`${actor}${props.movie.year}`}>{actor}</div>
+            <div key={`${actor}${props.movie.year}`}>{_.trim(actor)}</div>
           ))
         )}
       </td>

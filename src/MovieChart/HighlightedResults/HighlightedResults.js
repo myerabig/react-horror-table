@@ -1,5 +1,6 @@
 import React from 'react';
 import { getIndexes } from '../utils/getIndexes';
+var _ = require('lodash');
 
 function HighlightedResults(props) {
   let indexes = getIndexes(
@@ -35,7 +36,7 @@ function HighlightedResults(props) {
     );
   } else {
     let results = {};
-    let actors = props.item.map(actor => actor.toLowerCase());
+    let actors = props.item.map(actor => _.trim(actor.toLowerCase()));
 
     actors.forEach(actor => {
       results[actor] = [];

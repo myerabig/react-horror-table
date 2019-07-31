@@ -1,3 +1,5 @@
+var _ = require('lodash');
+
 function getData(id) {
   return document.getElementById(id).value;
 }
@@ -16,6 +18,46 @@ async function getMovies() {
   });
   const json = await response.json();
   return json;
+}
+
+async function imdbPull() {
+  const title = document.getElementById('addTitle').value;
+  let year = document.getElementById('addYear').value;
+
+  const response = await fetch(
+    `http://www.omdbapi.com/?apikey=36640720&t=${title}&y=${year}&plot=full`,
+    {
+      cache: 'no-cache'
+    }
+  );
+  const json = await response.json();
+  console.log(json);
+
+  let actors = json['Actors'].split(',');
+  actors.forEach(actor => {
+    _.trim(actor);
+  });
+  let genre = json['Genre'].split(',');
+  if (genre[0] === 'Horror') {
+    genre = _.trim(genre[1]);
+  } else {
+    genre = _.trim(genre[0]);
+  }
+  let imdbRating = parseFloat(json['imdbRating']);
+  const runtime = json['Runtime'].split(' ')[0];
+  const imdbLink = `https://www.imdb.com/title/${json['imdbID']}/`;
+  year = parseInt(json['Year']);
+
+  document.getElementById('addTitle').value = json['Title'];
+  document.getElementById('addTitleImage').value = json['Poster'];
+  document.getElementById('addYear').value = year;
+  document.getElementById('addDirector').value = json['Director'];
+  document.getElementById('addImdbLink').value = imdbLink;
+  document.getElementById('addImdbScore').value = imdbRating;
+  document.getElementById('addSubgenre').value = genre;
+  document.getElementById('addActors').value = actors;
+  document.getElementById('addSummary').value = json['Plot'];
+  document.getElementById('addRuntime').value = runtime;
 }
 
 function postMovie() {
@@ -100,4 +142,4 @@ function deleteMovie(objectId) {
   });
 }
 
-export { getMovies, postMovie, putMovie, deleteMovie };
+export { getMovies, postMovie, putMovie, deleteMovie, imdbPull };
