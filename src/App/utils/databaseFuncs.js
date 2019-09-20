@@ -68,7 +68,7 @@ function postMovie() {
     url: 'https://movies-4461.restdb.io/rest/movies',
     headers: {
       'cache-control': 'no-cache',
-      'x-apikey': '79e9ea634e18ec60517fd90c569e2c37305f6',
+      'x-apikey': '',
       'content-type': 'application/json'
     },
     body: {
@@ -100,7 +100,7 @@ function putMovie(objectId) {
     url: `https://movies-4461.restdb.io/rest/movies/${objectId}`,
     headers: {
       'cache-control': 'no-cache',
-      'x-apikey': '79e9ea634e18ec60517fd90c569e2c37305f6',
+      'x-apikey': '',
       'content-type': 'application/json'
     },
     body: {
@@ -132,7 +132,7 @@ function deleteMovie(objectId) {
     url: `https://movies-4461.restdb.io/rest/movies/${objectId}`,
     headers: {
       'cache-control': 'no-cache',
-      'x-apikey': '79e9ea634e18ec60517fd90c569e2c37305f6',
+      'x-apikey': '',
       'content-type': 'application/json'
     }
   };

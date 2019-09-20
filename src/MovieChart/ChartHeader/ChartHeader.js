@@ -54,8 +54,8 @@ function ChartHeader(props) {
           type='text'
         />
       </th>
-      <th width='15%'>Lead Actor(s)</th>
-      <th width='50%'>Plot Summary</th>
+      <th width='20%'>Lead Actor(s)</th>
+      <th width='45%'>Plot Summary</th>
       <th width='2%'>
         Runtime (minutes)
         <SortArrows
